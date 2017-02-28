@@ -1,0 +1,60 @@
+<ul class="nav nav-tabs">
+	<li id="{{$index}}" ng-repeat="env in envMaster" role="presentation" ng-class="{active : ((activeValue === env) || $index == 0)}"><a ng-click="getServiceHealthData({env:env, index:$index})">{{env}}</a></li>
+</ul>
+<div class="row"><p ng-show="serviceError.length">{{serviceError}}</p></div>
+
+<div class="row" ng-hide="serviceError.length">
+	<div class="row" style="text-align: center;">&nbsp;</span></div>
+	<div class="panel-group" id="accordion">
+		<div is-open="status.open" class="panel panel-default col-md-14" ng-repeat="(key, values) in serviceHealthCheckData">
+			<div class="panel-heading">
+				<a ng-click="isAutoTogle()" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}">
+					<i ng-class="$index == 0 ? 'glyphicon-minus-sign' : 'glyphicon-plus-sign'" class="indicator glyphicon pull-left"></i>
+					<h4 class="panel-title" align="left">&nbsp;&nbsp;{{key}}</h4>
+				</a>
+			</div>
+			<div style="overflow-x: scroll;" id="collapse{{$index}}" class="table-responsive panel-collapse collapse" ng-class="{in: $index == 0}">
+				<table class="table table-striped table-bordered">
+					<tr>
+						<td width="10%" align="center"><strong>Service<br>({{values.serviceBaseUri}})</strong></td>
+						<td width="5%" align="center"><strong>Method</strong></td>
+						<td align="center" ng-repeat="date in values.startedAts"><strong>{{(date | date:'MM/dd/yy')}}<br>{{(date | date:'shortTime')}}</strong></td>
+					</tr>
+					<tbody>
+						<tr ng-repeat="(keyInr, valuesInr) in values.resMap">
+							<td width="10%">{{keyInr | split:'[~]':1}}</td>
+							<td width="5%">{{keyInr | split:'[~]':2}}</td>
+							<td align="center" ng-repeat="data in valuesInr track by $index">
+								<table>
+									<tr>
+										<td align="center" >
+											<label ng-if="!data" tooltip="Data not available." tooltip-placement="top" tooltip-append-to-body="true" tooltip-popup-delay="200" class="active labelMoto">
+												<img alt="" src="images/icn-grey-black.png">
+											</label>
+											<label ng-if="data.passed" tooltip="Started At: {{data.startedAtHeader |date:'MM/dd/yy'}} {{data.startedAtHeader | date:'shortTime'}} Execution Time: {{data.executionTime}}s" tooltip-placement="top" tooltip-append-to-body="true" tooltip-popup-delay="200" class="active labelMoto">
+												<img alt="" src="images/icn-green.png" ng-show="data.passed">
+											</label>
+											<label ng-if="data && !data.passed" tooltip="Started At: {{data.startedAtHeader |date:'MM/dd/yy'}} {{data.startedAtHeader | date:'shortTime'}} Execution Time: {{data.executionTime}}s" tooltip-placement="top" tooltip-append-to-body="true" tooltip-popup-delay="200" class="active labelMoto">
+												<img alt="" src="images/icn-red.png" ng-show="!data.passed">
+											</label>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-14">
+		<table class="table table-striped table-bordered">
+			<tr>
+				<td align="center"><img alt="" src="images/icn-green.png">&nbsp;&nbsp;Service is passed.</td>
+				<td align="center"><img alt="" src="images/icn-red.png">&nbsp;&nbsp;Service is failed.</td>
+				<td align="center"><img alt="" src="images/icn-grey-black.png">&nbsp;&nbsp;Service data not available.</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="row">&nbsp</div>

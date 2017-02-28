@@ -1,0 +1,106 @@
+<div class="row">
+	<h3 style="margin-top: 0px;">Add New Test Data</h3>
+	<hr/>
+</div>
+<form name="addTestDataFrm" class="form-horizontal" role="form" ng-submit="addTestData()">
+	<div class="row">
+		<p ng-show="serviceError.length">{{serviceError}}</p>
+	    <div class="form-group">
+		    <label for="env" class="col-sm-2 control-label">Env</label>
+		    <div class="col-sm-3">
+		        <select class="form-control input-small" id="env"
+		            ng-model="testDataReqDto.testEnv"
+		            ng-options="testEnvs.env for testEnvs in testdatamasters.testEnvs track by testEnvs.env"
+		            ng-required="true">
+	            	<option value="">Select Env</option>
+	            </select>
+		    </div>
+		</div>
+		<div class="form-group">
+		    <label for="Group" class="col-sm-2 control-label">Group</label>
+		    <div class="col-sm-3">
+		        <select class="form-control input-small" id="Group"
+	            ng-model="testDataReqDto.testGroup"
+	            ng-options="testGroup.groupName for testGroup in testdatamasters.testGroups track by testGroup.groupName"
+	            ng-required="true">
+	            	<option value="">Select Group</option>
+	            </select>
+		    </div>
+		</div>
+		<div class="form-group">
+		    <label for="Country" class="col-sm-2 control-label">Country</label>
+		    <div class="col-sm-3">
+		        <select class="form-control input-small" id="Country"
+	            ng-model="testDataReqDto.testLocale"
+	            ng-options="testLocale.locale for testLocale in testdatamasters.testLocales track by testLocale.locale"
+	            ng-required="true">
+	            	<option value="">Select Country</option>
+	            </select>
+		    </div>
+		</div>
+		<div class="form-group">
+		    <label for="Scenario" class="col-sm-2 control-label">Scenario Name</label>
+		    <div class="col-sm-3">
+		        <select class="form-control input-small" id="Scenario"
+	            ng-model="testDataReqDto.testScenario"
+	            ng-options="testScenario.scenarioName for testScenario in testdatamasters.testScenarios track by testScenario.scenarioName"
+	            ng-required="true">
+	            	<option value="">Select Scenario</option>
+	            </select>
+		    </div>
+		</div>
+		<div class="form-group">
+		    <label for="Priority" class="col-sm-2 control-label">Scenario Priority</label>
+		    <div class="col-sm-3">
+		        <select class="form-control input-small" id="Priority"
+	            ng-model="testDataReqDto.testScenario.scenarioPriority"
+	            ng-required="true">
+	            	<option value="">Select Priority</option>
+	            	<option value="1">1</option>
+	            	<option value="2">2</option>
+	            	<option value="3">3</option>
+	            </select>
+		    </div>
+		</div>
+		<div class="form-group">
+		    <label for="ScenarioDescription" class="col-sm-2 control-label">Scenario Description</label>
+		    <div class="col-sm-5">
+		       <input id="ScenarioDescription" name="scenarioDescription" type="text" ng-model="testDataReqDto.testScenario.scenarioDescription" class="form-control" ng-required="true" maxlength="100"/>
+		    </div>
+		</div>
+		<div class="form-group">
+		    <label for="testScenarioName" class="col-sm-2 control-label">Test Scenario Name</label>
+		    <div class="col-sm-5">
+		       <input id="testScenarioName" name="testScenarioName" type="text" ng-model="formTestDataReqDto.testScenarioName" class="form-control" ng-required="true" maxlength="200"/>
+		    </div>
+		</div>
+		<!-- Don't delete below commented lines. -->
+		<!-- <div class="form-group">
+		    <label for="plot" class="col-sm-2 control-label">Test Data Type</label>
+		    <div class="col-sm-10">
+		        <input type="text" ng-model="formTestDataReqDto.testDataType" class="form-control" id="testDataType" ng-required="true"/>
+		    </div>
+		</div> -->
+		<div class="form-group">
+		    <label for="testData" class="col-sm-2 control-label">Test Data</label>
+		    <div class="col-sm-10" >
+		    	<textarea rows="13" cols="10" ng-model="formTestDataReqDto.testData" class="form-control" id="testData" ng-required="true"></textarea>
+		    	<span class="error" ng-show="formTestDataReqDto.invalidJson">Invalid JSON.</span>
+		    </div>
+		</div>
+		<!-- Don't delete below commented lines. -->
+		<!-- <div class="form-group">
+		    <label for="plot" class="col-sm-2 control-label">Updated By</label>
+		    <div class="col-sm-10">
+		        <input type="text" ng-model="formTestDataReqDto.updatedBy" class="form-control" id="updatedBy" ng-required="true"/>
+		    </div>
+		</div> -->
+	</div>
+	<div class="row">
+	    <div class="pull-left"><a ui-sref="testdatamaster" class="btn btn-primary btn-lg nodecoration">Back</a></div>
+	    <div class="pull-right">
+	        <input type="submit" class="btn btn-primary btn-lg nodecoration" value="Save"/>
+	    </div>
+	</div>
+	<div class="row">&nbsp;</div>
+</form>

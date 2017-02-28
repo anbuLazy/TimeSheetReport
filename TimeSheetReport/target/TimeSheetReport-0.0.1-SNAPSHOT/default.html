@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html data-ng-app="autoMotoApp" lang="en-us, en-uk, de, zh-cn">
+	<head lang="en">
+	<script type="text/javascript" id = "dt" src="js/dtagent635__1050.js?app=automoto.com" data-dtconfig="rt=10000|cors=1|md=Viewport=a[name='viewport']@content|bandwidth=300_m|tp=10,50,3,1|fa=1|reportUrl=https://motorola.dynatracesaas.com/dynaTraceMonitor/dynaTraceMonitor"></script>
+	
+	    <meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!-- <base href="/"/> -->
+	    <title>defualt</title>
+	    
+	    <link rel="stylesheet" type="text/css" href="css/font.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap-glyphicons.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/app.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/select.min.css"/>
+	</head>
+	<body>
+		<script type="text/ng-template" id="spinnermodal.html">
+	        <div class="modal-body">
+    	        <div class="row" style="text-align: center;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></div>
+        	</div>
+    	</script>
+	    <div id="wrapper">
+			<div class="page-header">
+				<div class="row">
+				<div class="col-md-2"><img class="logoimg" align="bottom" src="images/automoto.png"></div>
+				<!-- <div class="col-md-10"><h1 style="padding-top: 5px;">Automated Data Management</h1></div> -->
+			</div>
+			</div>
+			<div id="page-wrapper">
+				<div class="row" data-ng-controller="NavbarController">
+	        		<div class="col-md-2">
+					    <!-- Navigation -->
+				        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+				        	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			                    <span class="sr-only">Toggle navigation</span>
+			                    <span class="icon-bar"></span>
+			                    <span class="icon-bar"></span>
+			                    <span class="icon-bar"></span>
+			                </button>
+				            <div class="collapse navbar-collapse">
+				                <ul class="nav nav-pills nav-stacked">
+				                    <li class="active"><a ui-sref="testdatamaster" class="nav_main_heading">Home</a></li>
+				                    <li class="active"><a ui-sref="testdatamaster" class="nav_main_heading">Automation</a>
+				                    <ul class="tree nav" style="display:none;">
+				                    <!-- <ul class="tree nav nav-pills nav-stacked" style="display:none;"> -->
+				                    <li ng-class="getClass('/result')"><a ui-sref="result">Result</a></li>
+								    <li ng-class="getClass('/searchOrReplace')"><a ui-sref="searchOrReplace">Search Or Replace</a></li>
+				                    <!--<li ng-class="getClass('/chart')"><a ui-sref="chart">Chart POC</a></li>
+				                    <li ng-class="getClass('/media')"><a ui-sref="media">Media POC</a></li> -->
+				                    <li ng-class="getClass('/serviceHealth')"><a ui-sref="serviceHealth">Service Health Check</a></li>
+				                    <li ng-class="getClass('/scoreCardReport')"><a ui-sref="scoreCardReport">Score Cards</a></li>
+				                    </ul>
+				                    </li>
+				                    <li class="active"><a ui-sref="syntheticMonitoring" class="nav_main_heading">Performance</a>
+				                    <ul class="tree nav" style="display:none;">
+				                    <li ng-class="getClass('/syntheticMonitoring')"><a ui-sref="syntheticMonitoring">Synthetic Monitoring Dashboard</a></li>
+				                    <!-- <li ng-class="getClass('/PerfDashboardChart')"><a ui-sref="PerfDashboardChart">Performance Dashboard</a></li> -->
+				                    <li ng-class="getClass('/realUserMonitoring')"><a ui-sref="realUserMonitoring">Real User Monitoring Dashboard</a></li>
+				                    <li ng-class="getClass('/inventoryUpdate')"><a ui-sref="inventoryUpdate">Inventory Management</a></li>
+				                    </ul>
+				                    </li>
+				                     <li class="active"><a ui-sref="fontAutomation" class="nav_main_heading">Crawler Automation</a>
+				                    <ul class="tree nav" style="display:none;">
+				                    <li ng-class="getClass('/fontAutomation')"><a ui-sref="fontAutomation">Font Extraction</a></li>
+				                    </ul>
+				                    </li>				                    
+				                </ul>
+				            </div>
+				    	</nav>
+	            	</div>   
+	            	<div class="col-md-10 col-xs-10 col-xs-offset-0" ui-view></div>
+	           	</div>
+		    </div>
+		    <footer>
+				<div class="bottom" align="center">&copy; Copyright 2017 Motorola Mobility, Inc. All rights reserved.</div>
+			</footer>
+	    </div>
+	    <script type="text/javascript" src="lib/angular.min.js"></script>
+	    <script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
+	    <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="lib/angular-sanitize.min.js"></script>
+	    <!-- flowplayer JavaScript file that does Flash embedding and provides the Flowplayer API.	-->
+		<script type="text/javascript" src="flowplayer/flowplayer-3.2.13.min.js"></script>
+	    <script type="text/javascript" src="js/constant.js"></script>
+	    <script type="text/javascript" src="js/app.js"></script>
+	    <script type="text/javascript" src="js/controllers/controllers.js"></script>
+	    <script type="text/javascript" src="js/services/services.js"></script>
+	    <script type="text/javascript" src="js/directives/directives.js"></script>
+	    <script type="text/javascript" src="js/filters/filters.js"></script>
+	    <script type="text/javascript" src="lib/angular-ui-router.min.js"></script>
+	    <script type="text/javascript" src="lib/angular-resource.min.js"></script>
+	    <script type="text/javascript" src="lib/ui-bootstrap-tpls.min.js"></script>
+	    <script type="text/javascript" src="lib/chart.min.js"></script>
+	    <script type="text/javascript" src="lib/tc-angular-chartjs.min.js"></script>
+	    <script type="text/javascript" src="lib/select.min.js"></script>
+	    <script type="text/javascript" src="lib/ng-csv.js"></script>
+	    <script type="text/javascript" src="lib/FileSaver.min.js"></script>
+	    <script type="text/javascript" src="lib/jquery.table2excel.min.js"></script>
+	    <script type="text/javascript" src="lib/moment.min.js"></script>
+	    <script type="text/javascript" src="lib/alasql.min.js"></script>
+	    <script type="text/javascript" src="lib/xlsx.core.min.js"></script>
+	    <script>
+		$('.nav_main_heading').click(function () {
+			$(this).parent().children('ul.tree').show();
+			$(this).parent().siblings('li').children('ul.tree').hide();
+		});
+		</script>
+	</body>
+</html>

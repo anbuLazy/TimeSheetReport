@@ -1,0 +1,52 @@
+<ul class="nav nav-tabs">
+	<li id="{{$index}}" ng-repeat="env in envMasterSC" role="presentation" ng-class="{active : (activeValue == env || $index == 0)}"><a ng-click="getSupplyChainResult({env:env, index:$index})">{{env}}</a></li>
+</ul>
+<div class="row"><p ng-show="serviceError.length">{{serviceError}}</p></div>
+
+<div class="row" ng-hide="serviceError.length">
+<div class="row" style="text-align: center;">&nbsp;</span></div>
+<div class="row" ng-if="!serviceError.length && supplyChainDatas.length">
+	<table class="table testdatatable">
+	    <tr ng-repeat="supplyChainData in supplyChainDatas">
+	        <td class="col-md-2">{{supplyChainData.supplyChainDTO.group}}</td>
+	        <td class="col-md-10">
+	        	<div class="row">
+	        		<div ng-repeat="supplyChainResultDTO in supplyChainData.listSupplyChainResultDTO" class="col-md-1 moto-col-md-1">
+	        			<font size='1'>{{supplyChainResultDTO.startedAt.substring(0,5)}}{{supplyChainResultDTO.startedAt.substring(10,16)}}</font>
+	        			<label tooltip-html-unsafe="Transaction Id: {{supplyChainResultDTO.transactionId}}, <br>Start At: {{supplyChainResultDTO.startedAt}}, <br>Execution Time: {{supplyChainResultDTO.executionTime}} sec" tooltip-placement="bottom" tooltip-append-to-body="true" tooltip-popup-delay="200" class="custom-circle btn-{{supplyChainResultDTO.passed? 'success' : 'danger'}} active">
+        					<input type="radio" style="display: none;" name="radio{{supplyChainResultDTO.supplyChainResId}}" id="radio{{supplyChainResultDTO.supplyChainResId}}" value="{{supplyChainResultDTO.supplyChainResId}}" ng-click="viewResultLog({resLog:supplyChainResultDTO.resLog})" class="link" data-toggle="modal" data-target="#myModal"/>
+    					</label>
+   					</div>
+	        	</div>
+	        </td>
+	    </tr>
+	</table>
+</div>
+
+</div>
+
+</div>
+<div class="row">&nbsp</div>
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+	    <div class="modal-content">
+	    	<div class="modal-header">
+	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        	<h4 class="modal-title">Log</h4>
+	      	</div>
+	      	<div class="modal-body">
+		        <div class="row">
+			    	<div ng-if="resLog.length" style="overflow-x: auto;overflow-y: auto;height:450px;width:800px;">
+			    		<pre style="background-color: white;">
+			    			<div ng-bind-html="resLog"></div>
+			    		</pre>
+			    	</div>
+				</div>
+			</div>
+	      	<div class="modal-footer">
+	        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      	</div>
+	      </div>
+	    </div>
+	</div>

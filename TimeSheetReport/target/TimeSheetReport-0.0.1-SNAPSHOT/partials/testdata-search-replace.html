@@ -1,0 +1,95 @@
+<div class="row">
+	<h3 style="margin-top: 0px;">Search Or Replace Test Data</h3>
+	<hr/>
+</div>
+<div ng-show="serviceError.length || success.length" class="row">
+	<p ng-show="serviceError.length">{{serviceError}}</p><br/>
+    <p ng-show="success.length" align="left"><strong><font color="green" size="4">{{success}}</font></strong></p><br/>
+</div>
+<form name="testDataSearchReplaceFrm" class="form-horizontal" id="">
+	<div class="row">
+		<table class="table table-striped">
+		    <tr>
+				<td width="20%">
+					<label for="SearchData" class="control-label">Enter Search Test Data</label>
+				</td>
+				<td width="60%">
+			       <input id="SearchData" type="text" ng-model="testDataReqDto.searchTestData" class="form-control col-sm-8" ng-required="true" />
+				</td>
+				<td width="20%" />
+			</tr>
+			<tr>
+				<td width="20%">
+					<label for="ReplaceData" class="control-label">Enter Replace Test Data</label>
+				</td>
+				<td width="60%">
+			       <input id="ReplaceData" type="text" ng-model="testDataReqDto.replaceTestData" class="form-control col-sm-8" />
+				</td>
+				<td width="20%" />
+			</tr>
+			<tr>
+				<td width="20%" />
+			    <td width="60%"> 
+			     	  <button ng-click="getSearchData()" class="btn btn-primary btn-lg nodecoration pull-left">Search</button>
+			     	  &nbsp;&nbsp;
+				      <button ng-click="replaceSearchData()" class="btn btn-primary btn-lg nodecoration">Search & Replace</button>
+		    	</td>
+		    	<td width="20%" />
+		    </tr>
+		</table>
+	</div>
+	
+<div class="row" ng-show="!testdatas.length && submitted"><p>No data found.</p></div>
+<div class="row" ng-show="testdatas.length">
+	<table class="table table-striped">
+	    <tr>
+	    	<th>Group</th>
+	    	<!--th>Env Url</th-->
+	    	<th>Country</th>
+	    	<th>Scenario Name</th>
+	    	<th>Test Scenario Name</th>
+	    	<th>Updated By</th>
+	    	<th>Update Date</th>
+	    	<th>Disable</th>
+	    	<th>Edit</th>
+	    </tr>
+	    <tr ng-repeat="(key, value) in testdatas" class="{{value.disabled ? 'warning' : ''}}" id="row-{{value.testId}}">
+	        <td>{{value.groupName}}</td>
+	        <!--td>{{value.envUrl}}</td-->
+	        <td>{{value.locale}}</td>
+	        <td>{{value.scenarioName}}</td>
+	        <td>{{value.testScenarioName}}</td>
+	        <td>{{value.updatedBy}}</td>
+	        <td>{{value.updateDate}}</td>
+	        <td><input type="checkbox" ng-checked="value.disabled" ng-model="checkboxes[key]" ng-click="onClickCheckbox($event, key); "></td>
+	        <td>
+	            <a class="btn btn-primary" ui-sref="editTestData({id:value.testId})" ng-click="onClickEdit('searchOrReplace'); ">Edit</a>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td colspan="9"><pagination total-items="maxIndexSize" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage" boundary-links="boundaryLinks" direction-links="directionLinks" rotate="rotate" max-size="maxSize"></pagination></td>
+	    </tr>
+	</table>
+</div>
+
+<!-- Modal -->
+<div id="confirmModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+	    <div class="modal-content">
+	    	<div class="modal-header">
+	    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">{{modalIsDisabled ? 'Disable' : 'Enable'}}</h4>
+		    </div>
+	      	<div class="modal-body">
+		        <p>You are about to {{modalIsDisabled ? 'disable' : 'enable'}} test data.</p>
+		        <p>Do you want to proceed?</p>
+		    </div>
+	      	<div class="modal-footer">
+	      		<button type="button" ng-click="onClickBtnYes()" class="btn btn-default">Yes</button>
+	      		<button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">No</button>
+		    </div>
+	    </div>
+	</div>
+</div>
+</form>

@@ -1,0 +1,112 @@
+<div class="row">
+	<h3 style="margin-top: 0px;">Font Extractor</h3>
+	<hr/>
+</div>
+<div ng-show="serviceError.length || success.length" class="row">
+	<p ng-show="serviceError.length">{{serviceError}}</p><br/>
+    <p ng-show="success.length" align="left"><strong><font color="green" size="4">{{success}}</font></strong></p><br/>
+</div>
+<form name="testDataFontExtractFrm" class="form-horizontal" id="">
+	<div class="row">
+		<table class="table table-striped">
+		  
+		    <tr>
+		    	
+				<td width="20%">
+					<label for="SearchData" class="control-label">Please enter the URL</label>
+				</td>
+				<td width="60%">
+			       <input id="SearchData" type="text" ng-model="testDataReqDto.urlData" class="form-control col-sm-8" ng-required="true" />
+				</td>
+				<td width="20%" />
+			</tr>
+			
+			<tr>
+				<td width="20%" />
+			    <td width="60%"> 
+			  	  <button ng-click="getSingleWebPage()" class="btn btn-primary btn-lg nodecoration">Single Site</button>
+			           &nbsp;&nbsp;
+			     	  <button ng-click="getWholesite()" class="btn btn-primary btn-lg nodecoration">Whole Site</button>
+			     	   &nbsp;&nbsp;
+			     	  <button ng-click="Resetbtn()" class="btn btn-primary btn-lg nodecoration">Reset</button>
+		    	</td>
+		    	<td width="20%" />
+		    </tr>
+		</table>
+	</div>
+<div class="table-responsive" ng-show="validateURL"><caption><h4><strong>Please Provide Motorola Domain Specific URL Only</strong></h4></caption></div>	
+<div class="table-responsive" ng-show="pleaseWait"><caption><h4><strong>Please  wait while we are processing your  request</strong></h4></caption></div>	
+
+<div class="row" ng-show="!testdatas.LstURLFont.length && submitted"><p>No data found.</p></div>
+<div class="row" ng-show="testdatas">
+<div class="table-responsive">
+	<table class="table table-striped">
+	<caption><h4><strong>Font Result Status</strong></h4></caption>
+	    <tr>
+	    	<th>Total URL</th>
+	    	<th>Total Pass</th>
+	    	<th>Total  Fail</th>
+	    </tr>
+	    <tr>
+	        <td><a></a>{{testdatas.totalURL}}</a></td>
+	        <td>{{testdatas.totalPass}}</td>
+	        <td>{{testdatas.totalfail}}</td>
+	    </tr>
+	   
+	</table>
+	</div>
+</div>
+<div class="row" ng-show="testdatas.LstURLFont.length">
+<div class="table-responsive">
+	<table class="table table-striped">
+	<caption><h4><strong>Font Result Report</strong></h4></caption>
+	    <tr>
+	    	<th>Parent URL</th>
+	    	<!--th>Env Url</th-->
+	    	<th>Font Type</th>
+	    	<th>Font  Result</th>
+	    	 
+	    </tr>
+	    <tr ng-repeat="(key, value) in testdatas.LstURLFont" class="{{value.disabled ? 'warning' : ''}}" id="row-{{value.testId}}">
+	        <td>{{value.url}}</td>
+	        <td>{{value.fontName}}</td>
+	        <td class="moto-td-title">
+		         	<img alt="Pass" title="pass" src="images/icn-green.png" ng-show="value.fontResult === 'pass'">
+					<img alt="Fail" title="fail" src="images/icn-red.png" ng-show="value.fontResult  === 'fail'">
+				</td>
+	       
+<!-- 	        <td><input type="checkbox" ng-checked="value.disabled" ng-model="checkboxes[key]" ng-click="onClickCheckbox($event, key); "></td>
+	        <td>
+	            <a class="btn btn-primary" ui-sref="editTestData({id:value.testId})" ng-click="onClickEdit('searchOrReplace'); ">Edit</a>
+	        </td>
+	         -->
+	    </tr>
+	    <tr>
+	        <td colspan="9"><pagination total-items="maxIndexSize" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage" boundary-links="boundaryLinks" direction-links="directionLinks" rotate="rotate" max-size="maxSize"></pagination></td>
+	    </tr>
+	</table>
+	</div>
+</div>
+
+<!-- Modal -->
+<!-- <div id="confirmModal" class="modal fade" role="dialog"> -->
+<!-- 	<div class="modal-dialog"> -->
+<!-- 		<!-- Modal content--> 
+		
+<!-- 	    <div class="modal-content"> -->
+<!-- 	    	<div class="modal-header"> -->
+<!-- 	    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+<!-- 		        <h4 class="modal-title">{{modalIsDisabled ? 'Disable' : 'Enable'}}</h4> -->
+<!-- 		    </div> -->
+<!-- 	      	<div class="modal-body"> -->
+<!-- 		        <p>You are about to {{modalIsDisabled ? 'disable' : 'enable'}} test data.</p> -->
+<!-- 		        <p>Do you want to proceed?</p> -->
+<!-- 		    </div> -->
+<!-- 	      	<div class="modal-footer"> -->
+<!-- 	      		<button type="button" ng-click="onClickBtnYes()" class="btn btn-default">Yes</button> -->
+<!-- 	      		<button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">No</button> -->
+<!-- 		    </div> -->
+<!-- 	    </div> -->
+<!-- 	</div> -->
+<!-- </div> -->
+</form>

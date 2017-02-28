@@ -1,0 +1,85 @@
+<ul class="nav nav-tabs">
+	<li id="{{$index}}" ng-repeat="env in wptLocales" role="presentation" ng-class="{active : ((activeValue === env) || $index == 0)}"><a ng-click="getAppdResponseData({env:env, index:$index})">{{env}}</a></li>
+</ul>
+<div class="row"><p ng-show="serviceError.length">{{serviceError}}</p></div>
+
+<div class="row" ng-hide="serviceError.length">
+<div class="row" style="text-align: center;">&nbsp;</span></div>
+<div class="panel-group" id="accordion">
+	<div is-open="status.open" class="panel panel-default col-md-14" ng-repeat="(key, values) in wptServiceRespData">
+	<div class="panel-heading">
+		<a ng-click="isAutoTogle()" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}">
+			<i ng-class="$index == 0 ? 'glyphicon-minus-sign' : 'glyphicon-plus-sign'" class="indicator glyphicon pull-left"></i>
+			<h4 class="panel-title" align="left">&nbsp;&nbsp;{{key}}</h4>
+		</a>
+	</div>
+	 <div style="overflow-x: scroll;" id="collapse{{$index}}" class="table-responsive panel-collapse collapse" ng-class="{in: $index == 0}">
+		<table class="table table-striped table-bordered">
+				<tr>
+					<td width="10%" align="center"><strong>Page</strong></td>
+					<td align="center" ng-repeat="date in wptDates"><strong>{{date}}</strong>
+						<table class="table-striped table-bordered" width="100%">
+							<tr>
+								<td align="center" width="25%">
+									<label class="active labelMoto">
+										Requests
+									</label>
+								</td>
+								<td align="center" width="25%">
+									<label class="active labelMoto">
+										First Byte
+									</label>
+								</td>
+								<td align="center" width="25%">
+									<label class="active labelMoto">
+										Dom Time
+									</label>
+								</td>
+								<td align="center" width="25%">
+									<label class="active labelMoto">
+										End User Response Time
+									</label>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			<tbody>
+				<tr ng-repeat="valueObj in values | orderBy:'pageNumber'">
+					<td width="10%">{{valueObj.page}}</td>
+					<td align="center" ng-repeat="dateRspObj in valueObj.appdDateResp">
+						<table class="table-striped table-bordered" width="100%">
+							<tr>
+								<td align="center" width="25%">
+									<label class="active labelMoto">
+										{{dateRspObj.numberOfRequests}}
+									</label>
+								</td>
+								<td align="center" width="25%">
+									<label class="active labelMoto">
+										{{dateRspObj.fbTime}}
+									</label>
+								</td>
+								<td align="center" width="25%">
+									<label class="active labelMoto">
+										{{dateRspObj.domTime}}
+									</label>
+								</td>
+								<td align="center" width="25%">
+									<label class="active labelMoto">
+										{{dateRspObj.avgEndUserResponseTime}}
+									</label>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		</div>
+	</div>
+</div>
+<div class="row">&nbsp</div>
+<button class="btn btn-default"
+              ng-csv="getArray" filename="{{ filename }}.csv" field-separator="{{separator}}" decimal-separator="{{decimalSeparator}}">Export to CSV</button>

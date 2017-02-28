@@ -1,0 +1,6 @@
+<div class="col-xs-6 col-md-4" ng-repeat="lineChartData in lineChartDatas | orderBy:'pageNumber'">
+	<strong>{{lineChartData.pageName}}
+ 	</strong>
+ 	<canvas tc-chartjs chart-type="line" chart-options="lineChartOptions" chart-data="lineChartData" auto-legend></canvas>
+ 	
+</div>

@@ -1,0 +1,31 @@
+<div class="row">
+	<tabset>
+		<tab heading="Video flv (flash)" ng-click="pauseOrPlay(0)">
+	    	<div align="center" class="embed-responsive embed-responsive-16by9">
+	    		<object id="flowplayer" width="720" height="480" 
+			        data="flowplayer/flowplayer-3.2.18.swf"
+			        type="application/x-shockwave-flash">
+			 
+			        <param name="movie" value="flowplayer/flowplayer-3.2.18.swf" />
+			        <param name="allowfullscreen" value="true" />
+			 
+			        <param name="flashvars"
+			            value='config={"clip":{"url":"https://saucelabs.com/rest/v1/mmdwtest/jobs/c2e710fb44bc4f6a87ba5b29dd386c7e/assets/video.flv", "autoPlay": false, "autoBuffering": true, "bufferLength" : 5}, 
+			      			"controls":{"mute":false,"volume":false,"backgroundColor":"rgba(0, 0, 0, 0.7)"},
+			      			"play":{"opacity":1,"label":"AutoMoto","replayLabel":"AutoMoto"}}' />
+			    </object>
+	    	</div>
+    	</tab>
+    	<tab heading="Image" ng-click="pauseOrPlay(0)">
+	    	<div><img alt="" ng-src="dowload/canvas.png" class="img-responsive"></div>
+    	</tab>
+	    <tab heading="Video mp4" ng-click="pauseOrPlay(1)">
+	    	<div align="center" class="embed-responsive embed-responsive-16by9">
+	    		<video id="video" preload="auto" controls class="embed-responsive-item">
+				  	<source ng-src="http://100.64.140.213:8080/auto-moto-services/download/test.mp4/file" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+			</div>
+		</tab>
+	</tabset>
+</div>

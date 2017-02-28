@@ -1,0 +1,92 @@
+<div class="row"><h3 style="margin-top: 0px;">Update Inventory</h3></div>
+<div ng-show="serviceError.length || success.length" class="row">
+	<p ng-show="serviceError.length">{{serviceError}}</p><br/>
+    <p ng-show="success.length" align="left"><strong><font color="green" size="4">{{success}}</font></strong></p><br/>
+</div>
+
+
+<table class="table table-striped">
+  <tr>
+	    	<th>Instructions</th>
+	    
+	    	
+	    </tr>
+	     <tr>
+		    	<td width="70%">
+		    	 Fill inventory SKU's in the google spreadsheet by choosing the locale listed below
+		    	</td>
+		    
+		    	</tr>
+	    		<tr><td width="70%" style="background-color: white;border-top: 0px;">
+	    	 <a ng-href="" ng-click="spreadsheetUS()">US & OtherRegions</a> 
+	    		</td></tr>
+		    	<tr>
+		    	<td width="70%" style="background-color: white;border-top: 0px;">
+	    	 <a ng-href="" ng-click="spreadsheetBR()">Brazil</a> 
+	    	 </td>
+	    		</tr>
+	    		<tr><td width="70%" style="background-color: white;border-top: 0px;">
+	    	 <a ng-href="" ng-click="spreadsheetCN()">China</a> 
+	    		</td></tr>
+
+</table>
+
+<form name="inventoryupdateform" >
+	<div class="row">
+		<table class="table table-striped">
+		    <tr>
+		    	<th>Environment</th>
+		    	<th>Locale</th>
+		    	<th></th>
+		    </tr>
+		    <tr>
+		    	<td width="21%">
+			        <select class="form-control input-small" id="env"
+			            ng-model="invupdate.env"
+			            ng-options="env for env   in invupdateEnv"
+						ng-required="true"
+			           >
+		            	<option value="">Select Environment</option>
+		            	
+		            </select>
+		    	</td>
+		    	
+				<td width="21%">
+			        <select class="form-control input-small" id="locale"
+			            ng-model="invupdate.locale"
+			            ng-options="locale for locale  in invupdateLocale"
+			            ng-required="true"
+			          >
+		            	<option value="">Select Locale</option>
+		            </select>
+				</td>
+				
+				<td width="16%">
+				  
+				     <div class="pull-left"><button ng-click="updateInv()" class="btn btn-primary btn-lg nodecoration pull-right">Update</button></div>  
+				     
+		    	</td>
+		    </tr>
+		    <tr>
+		    <th style="color:blue;background-color: white;border-top: 0px;">
+		    
+		    <b>{{status}}</b>
+		    <div class="cancel">
+		        <button ng-show="loader.loading" class="btn btn-success">Loading...
+		        <i class="fa fa-spinner fa-spin"></i>
+		        </button>
+        
+   			</div>
+		    </th></tr>
+		    <tr> 
+		    
+
+   		</tr>
+		</table>
+	</div>
+	<!-- <div class = "status">
+		<pre>{{status}}</pre>
+	</div> -->
+</form>
+<div class="row" ng-show="!testdatas.length && submitted"><p>no data found.</p></div>
+

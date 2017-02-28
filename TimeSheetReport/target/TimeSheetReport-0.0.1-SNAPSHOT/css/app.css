@@ -1,0 +1,47 @@
+/**
+ * Created by sksharma.
+ * 
+ * This is application specific css file.
+ */
+ body{font-family: 'Open Sans', sans-serif;}
+.top-buffer{margin-top:10px;}
+.testdatatable tr:nth-child(1) td{border-top: none;}
+a.nodecoration{text-decoration:none;}
+a[ng-click]{cursor: pointer;}
+.tc-chart-js-legend{list-style-type: none; padding-left: 0px;}
+.tc-chart-js-legend li{display: block; float: left; /*clear:both;*/ padding:10px;}
+.tc-chart-js-legend li span{width:25px; height:25px; display:block; float:left; margin-right:10px;}
+.tooltip > div{text-align:left;}
+.table-striped-even > tbody > tr:nth-child(2n) > td, .table-striped-even > tbody > tr:nth-child(2n) > th{background-color: #f9f9f9;}
+.table-striped-table{background-color: #f9f9f9 !important;}
+.td-div-scroll{overflow: auto; width: 299px;}
+#wrapper{width: 100%; padding:10px; min-height: 775px; background-color: #FEFEFE;}
+.row{width: 100%; margin-left: 0px; margin-right: 0px;}
+footer{position: fixed; height: -10px; bottom: 0; width: 100%; z-index: 3;}
+.page-header{margin: -10px 0 10px;}
+.custom-circle{display: inline-block; position: relative; cursor: pointer; width: 20px; height: 20px; box-shadow: 0 2px 2px #999; padding: 0px; text-decoration: none; text-align: center; color: #fff; font-size: 25px; font-weight: normal; line-height: 2em; border-radius: 25px; -moz-border-radius:25px; -webkit-border-radius:25px; z-index: 3}
+body .modal-dialog{width: 60%;}
+.top-buffer{margin-top:10px;}
+.log-data{max-width: 200px; word-wrap: break-word;text-align: left !important;}
+footer > div{margin: 0 0 0 -10px; background-color: #f9f9f9;}
+.pagination {margin: 8px 0;}
+.icon-moto-pass{background: url(../images/icn-green.png) no-repeat scroll 20px center;}
+.icon-moto-fail{background: url(../images/icn-red.png) no-repeat scroll 20px center;}
+.cell table thead tr th {height:20px;}
+.cell table tbody tr td {height:20px;}
+.labelMoto{margin-bottom: -1px;}
+.logoimg{border: 0; width: 100%; height: 58px; margin-top: 10px;}
+.label-moto{padding-top: 3px;}
+.glyphicon-refresh-animate {-animation: spin .7s infinite linear; -webkit-animation: spin2 .7s infinite linear;}
+@-webkit-keyframes spin2 {from { -webkit-transform: rotate(0deg);} to { -webkit-transform: rotate(360deg);}}
+@keyframes spin { from { transform: scale(1) rotate(0deg);} to { transform: scale(1) rotate(360deg);}}
+.form-control {height: 25px; padding: 0px;}
+.btn {padding: 3px 10px; border-radius: 3px;}
+.modal-0{margin-top: 200px; width: 5% !important;}
+.tblMoto > tbody > tr > th{text-align: center;}
+.tblMoto > tbody > tr > td{word-wrap: break-word; text-align: center;}
+.moto-col-md-1{width: 6%;}
+.moto-pre-log{font-family: "Open Sans",sans-serif; display: block; padding: 0px; margin: 0 0 10px; word-break: break-all; word-wrap: break-word; background-color: inherit; border: 0px solid #ffffff; border-radius: 0px;}
+.moto-td-title{max-width: 100px;}
+#confirmModal .modal-dialog{width: 20%;}
+#emailModal .modal-dialog{width: 30%;}

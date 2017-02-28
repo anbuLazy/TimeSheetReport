@@ -1,0 +1,40 @@
+ <div class="table-responsive">
+		<table class="table table-striped table-bordered tblMoto" >
+			<caption><h4><strong>WPTResultsDashBoard</strong></h4></caption>
+			<tr>
+			    <th>Run Date</th>
+				<th>PageName</th>
+				<th>Locale</th>
+				<th>ProductName</th>
+				<th>Device</th>
+				<th>DeviceDetails</th>
+				<th>NtkBandwidth</th>
+				<th>Requests</th>
+				<th>LoadTime</th>
+				<th>TTFB</th>
+				<th>BytesIn</th>
+				<th>BytesOut</th>
+				<th>DocTime</th>
+				<th>VisualComplete</th>
+			</tr>
+			
+        <tr ng-repeat="wptDashboardTestData in wptDashboardTestDatas | orderBy:'pageName'">
+				<td>{{wptDashboardTestData.runDate}}</td>
+				<td>{{wptDashboardTestData.pageName}}</td>
+				<td>{{wptDashboardTestData.locale}}</td>
+				<td>{{wptDashboardTestData.productName}}</td>
+				<td>{{wptDashboardTestData.device}}</td>
+				<td>{{wptDashboardTestData.deviceDetails}}</td>
+				<td>{{wptDashboardTestData.ntkBandwidth}}</td>
+				<td>{{wptDashboardTestData.requests}}</td>
+				<td>{{wptDashboardTestData.loadTime}}</td>
+				<td>{{wptDashboardTestData.ttfb}}</td>
+				<td>{{wptDashboardTestData.bytesIn}}</td>
+				<td>{{wptDashboardTestData.bytesOut}}</td>
+				<td>{{wptDashboardTestData.docTime}}</td>
+				<td>{{wptDashboardTestData.visualComplete}}</td>
+			</tr>
+			<tr>
+	    </tr>
+		</table>
+		</div>

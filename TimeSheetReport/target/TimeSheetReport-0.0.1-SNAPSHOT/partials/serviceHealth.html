@@ -1,0 +1,48 @@
+<ul class="nav nav-tabs">
+	<li id="{{$index}}" ng-repeat="env in envMaster" role="presentation" ng-class="{active : ((activeValue === env) || $index == 0)}"><a ng-click="getServiceHealthData({env:env, index:$index})">{{env}}</a></li>
+</ul>
+<div class="row"><p ng-show="serviceError.length">{{serviceError}}</p></div>
+
+<div class="row" ng-hide="serviceError.length">
+	<div class="row" style="text-align: center;">&nbsp;</span></div>
+	<div class="panel-group" id="accordion">
+		<div id="accordion{{$index}}" is-open="status.open" class="panel panel-default col-md-14" ng-repeat="grp in groupMaster">
+			<div class="panel-heading">
+				<a ng-click="isAutoTogle(grp)" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}">
+					<i id="{{$index}}" ng-class="$index == 0 ? 'glyphicon-minus-sign' : 'glyphicon-plus-sign'" class="indicator glyphicon pull-left"></i>
+					<h4 class="panel-title" align="left" id="{{$index}}">&nbsp;&nbsp;{{grp}}</h4>
+				</a>
+			</div>
+			<div style="overflow-x: scroll;" id="collapse{{$index}}" class="table-responsive panel-collapse collapse" ng-class="{in: $index == 0}">
+				<table class="table table-striped table-bordered">
+					<tr ng-repeat="valuesInr in serviceHealthCheckData" ng-if="$index == 0">
+						<td width="10%" align="center" ng-repeat="val in valuesInr" ng-if="$index == 0"><strong>Service<br>{{val}}</strong></td>
+						<td width="5%" align="center" ng-repeat="val in valuesInr" ng-if="$index == 1"><strong>{{val}}</strong></td>
+						<td width="10%" align="center" ng-repeat="val in valuesInr" ng-if="$index > 1"><strong>{{val}}</strong></td>
+					</tr>
+					<tr ng-repeat="valuesInr in serviceHealthCheckData" ng-if="$index > 0">
+						<td width="10%" ng-repeat="val in valuesInr" ng-if="$index == 0"><strong>{{val}}</strong></td>
+						<td width="5%" ng-repeat="val in valuesInr" ng-if="$index == 1"><strong>{{val}}</strong></td>
+						<td width="10%" align="center" ng-repeat="val in valuesInr" ng-if="$index > 1">
+							<label tooltip="Started At: {{val | split:'~':1}} Execution Time: {{val | split:'~':0}}s" tooltip-placement="top" tooltip-append-to-body="true" tooltip-popup-delay="200" class="active labelMoto">
+								<!--img alt="" src="{{(val | split:'~':2) === 'true' ? 'images/icn-green.png': 'images/icn-red.png'}}"-->
+								<img alt="" src="images/icn-green.png" ng-if="(val | split:'~':2) == 'true'">
+								<img alt="" src="images/icn-red.png" ng-if="(val | split:'~':2) == 'false'">
+							</label>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-14">
+		<table class="table table-striped table-bordered">
+			<tr>
+				<td align="center"><img alt="" src="images/icn-green.png">&nbsp;&nbsp;Service is passed.</td>
+				<td align="center"><img alt="" src="images/icn-red.png">&nbsp;&nbsp;Service is failed.</td>
+				<td align="center"><img alt="" src="images/icn-grey-black.png">&nbsp;&nbsp;Service data not available.</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="row">&nbsp</div>
